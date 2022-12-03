@@ -1,0 +1,34 @@
+schema: '2.0'
+stages:
+  data_proc:
+    cmd: python src/proc.py
+    deps:
+    - path: data/raw/test.csv
+      md5: 029c9cd22461f6dbe8d9ab01def965c6
+      size: 28629
+    - path: data/raw/train.csv
+      md5: 61fdd54abdbf6a85b778e937122e1194
+      size: 61194
+    - path: src/proc.py
+      md5: cddabf9ad153024edbd5d8386e40aaca
+      size: 850
+    outs:
+    - path: data/out/preprocess.pkl
+      md5: 92495d44c5e2baae432e9fc5887cb9d4
+      size: 1579594
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/out/preprocess.pkl
+      md5: 92495d44c5e2baae432e9fc5887cb9d4
+      size: 1579594
+    - path: src/train.py
+      md5: 129b8a4afab3151db91e57e7c2beb1e5
+      size: 1147
+    outs:
+    - path: data/out/gender_submission.csv
+      md5: e3c71de026acf99fb6be754df404e347
+      size: 3258
+    - path: data/out/summary.yaml
+      md5: 5f8b313d519d2ceb3e6b989aaef7337f
+      size: 30

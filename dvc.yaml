@@ -1,0 +1,20 @@
+stages:
+  data_proc:
+    cmd: python src/proc.py
+    deps:
+    - data/raw/test.csv
+    - data/raw/train.csv
+    - src/proc.py
+    outs:
+    - data/out/preprocess.pkl
+
+  train:
+    cmd: python src/train.py
+    deps:
+    - data/out/preprocess.pkl
+    - src/train.py
+    outs:
+    - data/out/gender_submission.csv
+    metrics:
+    - data/out/summary.yaml:
+        cache: false
