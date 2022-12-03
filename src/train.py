@@ -15,7 +15,7 @@ if __name__ == '__main__':
     train_valid = df.query('is_Test == 0').copy()
     test = df.query('is_Test == 1').copy()
 
-    train, valid = train_test_split(train_valid, test_size=0.2, shuffle=True, random_state=0)
+    train, valid = train_test_split(train_valid, test_size=0.2, shuffle=True, random_state=1000)
 
     train_X = train.drop(columns=['Survived', 'is_Test'])
     train_y = train['Survived']
